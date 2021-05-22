@@ -88,6 +88,10 @@ body {
   .hide {
       display: none;
   }
+  .inactive {
+    display: none;
+}
+
 
   #start-button {
       margin: 20px 0px;

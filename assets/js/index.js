@@ -15,9 +15,10 @@ window.addEventListener("load", () => {
     });
 
     const start = document.querySelector(".game-intro");
-    start.classList.add("hide")
+    start.classList.add("inactive");
 
     const score = document.getElementById("score-game");
-    score.classList.remove("hide")
+    score.classList.remove("inactive");
   }
+  
 });

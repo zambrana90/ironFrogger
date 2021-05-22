@@ -8,6 +8,12 @@ class Game {
 
     this.fps = 1000 / 60;
 
+    this.timeCount = 0;
+
+    this.scoreCount = 0;
+
+    this.livesCount = 3;
+
     this.drawInterval = undefined;
 
     this.map = new Map(this.ctx);
@@ -96,6 +102,11 @@ class Game {
         this.draw();
 
         this.checkCollisions();
+        this.timeCount++;
+        this.scoreCount++;
+        this.time();
+        this.lives();
+        this.score();
       }, this.fps);
     }
   }
@@ -159,9 +170,9 @@ class Game {
   }
 
   gameOver() {
-    //this.frog.x = this.ctx.canvas.width / 2;
-    //this.frog.y = this.ctx.canvas.height - 90;
-    console.log("MUERTO")
+    this.frog.x = this.ctx.canvas.width / 2;
+    this.frog.y = this.ctx.canvas.height - 90;
+    //console.log("MUERTO");
     /*
       clearInterval(this.drawInterval)
 
@@ -184,7 +195,8 @@ class Game {
 
   checkCollisions() {
     if (this.cars.some((car) => this.frog.collidesWithCar(car))) {
-      //this.gameOver();
+      this.livesCount--;
+      this.gameOver();
     } else if (this.frog.vision.up && this.frog.y >= 54 && this.frog.y < 290) {
       if (
         this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
@@ -227,6 +239,7 @@ class Game {
           }
         }
       } else {
+        this.livesCount--;
         this.gameOver();
       }
     } else if (
@@ -271,6 +284,7 @@ class Game {
           }
         }
       } else {
+        this.livesCount--;
         this.gameOver();
       }
     } else if (
@@ -315,8 +329,46 @@ class Game {
           }
         }
       } else {
+        this.livesCount--;
         this.gameOver();
       }
+    }
+  }
+
+  time() {
+    //console.log(this.timeCount);
+    if (this.timeCount % 120 == 0) {
+      let time = document.querySelectorAll(".score-time");
+      const timeArr = [...time];
+      console.log(timeArr);
+      let lastIndex = timeArr.length - 1;
+      timeArr[lastIndex].classList.add("inactive");
+      timeArr[lastIndex].remove();
+    }
+  }
+
+  score() {
+    if (this.scoreCount % 30 == 0) {
+      let scoreUni = document.querySelector("#uni");
+      scoreUni.innerHTML = Math.floor(this.scoreCount / 20);
+    }
+  }
+
+  lives() {
+    //console.log(this.timeCount);
+    if (this.livesCount == 3) {
+    } else if (this.livesCount == 2) {
+      let live = document.querySelectorAll(".score-heart");
+      const liveArr = [...live];
+      liveArr[2].classList.add("inactive");
+      liveArr[2].classList.remove();
+    } else if (this.livesCount == 1) {
+      let live = document.querySelectorAll(".score-heart");
+      const liveArr = [...live];
+      liveArr[1].classList.add("inactive");
+      liveArr[1].classList.remove();
+    } else {
+      this.gameOver();
     }
   }
 }
