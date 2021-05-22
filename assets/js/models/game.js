@@ -14,6 +14,10 @@ class Game {
 
     this.cars = [];
     this.obstacles = [];
+    this.obstaclesW1 = [];
+    this.obstaclesW2 = [];
+    this.obstaclesW3 = [];
+    this.obstaclesW4 = [];
 
     this.carYellow = new CarYellow(this.ctx, -250, 560, VEL_ROAD_R3);
     this.cars.push(this.carYellow);
@@ -25,7 +29,7 @@ class Game {
     );
     this.cars.push(this.carYellowReverse);
 
-    this.carBlue1 = new CarBlue(this.ctx, -700, 650, VEL_ROAD_R4);
+    this.carBlue1 = new CarBlue(this.ctx, -700, 645, VEL_ROAD_R4);
     this.cars.push(this.carBlue1);
     this.carBlue2 = new CarBlue(this.ctx, -800, 560, VEL_ROAD_R3);
     this.cars.push(this.carBlue2);
@@ -38,33 +42,44 @@ class Game {
     this.police2 = new CarPoliceReverse(this.ctx, 1250, 485, VEL_ROAD_R2);
     this.cars.push(this.police2);
 
-    this.fireTruck = new FireTruck(this.ctx, -200, 650, VEL_ROAD_R4);
+    this.fireTruck = new FireTruck(this.ctx, -200, 645, VEL_ROAD_R4);
     this.cars.push(this.fireTruck);
 
     this.turtle1 = new Turtle(this.ctx, 15, 80, VEL_WATER_R1);
     this.obstacles.push(this.turtle1);
-    this.turtle2 = new Turtle(this.ctx, 85, 80, VEL_WATER_R1);
+    this.obstaclesW1.push(this.turtle1);
+    this.turtle2 = new Turtle(this.ctx, 80, 80, VEL_WATER_R1);
     this.obstacles.push(this.turtle2);
-    this.turtle3 = new Turtle(this.ctx, 155, 80, VEL_WATER_R1);
+    this.obstaclesW1.push(this.turtle2);
+    this.turtle3 = new Turtle(this.ctx, 145, 80, VEL_WATER_R1);
     this.obstacles.push(this.turtle3);
+    this.obstaclesW1.push(this.turtle3);
 
     this.turtleReverse1 = new TurtleReverse(this.ctx, 800, 260, VEL_WATER_R4);
     this.obstacles.push(this.turtleReverse1);
-    this.turtleReverse2 = new TurtleReverse(this.ctx, 870, 260, VEL_WATER_R4);
+    this.obstaclesW4.push(this.turtleReverse1);
+    this.turtleReverse2 = new TurtleReverse(this.ctx, 865, 260, VEL_WATER_R4);
     this.obstacles.push(this.turtleReverse2);
-    this.turtleReverse3 = new TurtleReverse(this.ctx, 940, 260, VEL_WATER_R4);
+    this.obstaclesW4.push(this.turtleReverse2);
+    this.turtleReverse3 = new TurtleReverse(this.ctx, 930, 260, VEL_WATER_R4);
     this.obstacles.push(this.turtleReverse3);
+    this.obstaclesW4.push(this.turtleReverse3);
 
     this.treeXL = new Treexl(this.ctx, -400, 200, VEL_WATER_R3);
     this.obstacles.push(this.treeXL);
+    this.obstaclesW3.push(this.treeXL);
     this.treeL = new TreeLReverse(this.ctx, 1200, 140, VEL_WATER_R2);
     this.obstacles.push(this.treeL);
+    this.obstaclesW2.push(this.treeL);
     this.treeL2 = new TreeLReverse(this.ctx, 1430, 260, VEL_WATER_R4);
     this.obstacles.push(this.treeL2);
+    this.obstaclesW4.push(this.treeL2);
     this.treeM = new TreeMReverse(this.ctx, 720, 140, VEL_WATER_R2);
     this.obstacles.push(this.treeM);
+    this.obstaclesW2.push(this.treeM);
     this.treeM2 = new Treem(this.ctx, -475, 80, VEL_WATER_R1);
     this.obstacles.push(this.treeM2);
+    this.obstaclesW1.push(this.treeM2);
 
     this.frog = new Frog(
       this.ctx,
@@ -146,6 +161,7 @@ class Game {
   gameOver() {
     //this.frog.x = this.ctx.canvas.width / 2;
     //this.frog.y = this.ctx.canvas.height - 90;
+    console.log("MUERTO")
     /*
       clearInterval(this.drawInterval)
 
@@ -168,168 +184,138 @@ class Game {
 
   checkCollisions() {
     if (this.cars.some((car) => this.frog.collidesWithCar(car))) {
-      this.gameOver();
-    } else if (this.frog.y >= 50 && this.frog.y < 300) {
-      if (this.frog.vision.up) {
-        if (this.frog.y >= 50 && this.frog.y < 115) {
+      //this.gameOver();
+    } else if (this.frog.vision.up && this.frog.y >= 54 && this.frog.y < 290) {
+      if (
+        this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
+      ) {
+        if (this.frog.y >= 54 && this.frog.y <= 90) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW1.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            console.log("1ª");
+            //console.log("1ª");
             this.frog.x += VEL_WATER_R1;
           }
-        } else if (this.frog.y >= 115 && this.frog.y < 160) {
+        } else if (this.frog.y >= 110 && this.frog.y <= 149) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW2.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            console.log("2ª");
+            //console.log("2ª");
             this.frog.x -= VEL_WATER_R2;
           }
-        } else if (this.frog.y >= 160 && this.frog.y < 215) {
+        } else if (this.frog.y >= 174 && this.frog.y <= 211) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW3.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            console.log("3ª");
+            // console.log("3ª");
             this.frog.x += VEL_WATER_R3;
           }
-        } else if (this.frog.y >= 215 && this.frog.y < 270) {
+        } else if (this.frog.y >= 235 && this.frog.y <= 282) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW4.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            console.log("4ª");
+            //console.log("4ª");
             this.frog.x -= VEL_WATER_R4;
           }
-        } else {
-          //this.gameOver()
         }
-      } else if (this.frog.vision.down) {
-        if (
-          this.frog.y + this.frog.height >= 60 &&
-          this.frog.y + this.frog.height < 100
-        ) {
+      } else {
+        this.gameOver();
+      }
+    } else if (
+      this.frog.vision.down &&
+      this.frog.y >= 49 &&
+      this.frog.y < 280
+    ) {
+      if (
+        this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
+      ) {
+        if (this.frog.y >= 49.5 && this.frog.y <= 83.5) {
           if (
-            this.obstacles.some((obstacle) =>
-              this.frog.collidesWithObst(obstacle)
-            )
-          ) {
-            this.frog.x += VEL_WATER_R1;
-          }
-        } else if (
-          this.frog.y + this.frog.height >= 100 &&
-          this.frog.y + this.frog.height < 160
-        ) {
-          if (
-            this.obstacles.some((obstacle) =>
-              this.frog.collidesWithObst(obstacle)
-            )
-          ) {
-            this.frog.x -= VEL_WATER_R2;
-          }
-        } else if (
-          this.frog.y + this.frog.height >= 160 &&
-          this.frog.y + this.frog.height < 215
-        ) {
-          if (
-            this.obstacles.some((obstacle) =>
-              this.frog.collidesWithObst(obstacle)
-            )
-          ) {
-            this.frog.x += VEL_WATER_R3;
-          }
-        } else if (
-          this.frog.y + this.frog.height >= 215 &&
-          this.frog.y + this.frog.height < 270
-        ) {
-          if (
-            this.obstacles.some((obstacle) =>
-              this.frog.collidesWithObst(obstacle)
-            )
-          ) {
-            this.frog.x -= VEL_WATER_R4;
-          }
-        } else {
-          //this.gameOver()
-        }
-      } else if (this.frog.vision.left) {
-        if (this.frog.y >= 60 && this.frog.y < 100) {
-          if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW1.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x += VEL_WATER_R1;
           }
-        } else if (this.frog.y >= 100 && this.frog.y < 160) {
+        } else if (this.frog.y >= 105.5 && this.frog.y <= 146) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW2.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x -= VEL_WATER_R2;
           }
-        } else if (this.frog.y >= 160 && this.frog.y < 215) {
+        } else if (this.frog.y >= 166.5 && this.frog.y <= 204) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW3.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x += VEL_WATER_R3;
           }
-        } else if (this.frog.y >= 215 && this.frog.y < 270) {
+        } else if (this.frog.y >= 224 && this.frog.y <= 256.5) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW4.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x -= VEL_WATER_R4;
           }
-        } else {
-          //this.gameOver()
         }
-      } else if (this.frog.vision.right) {
-        if (this.frog.y >= 60 && this.frog.y < 100) {
+      } else {
+        this.gameOver();
+      }
+    } else if (
+      (this.frog.vision.left || this.frog.vision.right) &&
+      this.frog.y >= 54 &&
+      this.frog.y < 280
+    ) {
+      if (
+        this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
+      ) {
+        if (this.frog.y >= 54 && this.frog.y <= 74.5) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW1.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x += VEL_WATER_R1;
           }
-        } else if (this.frog.y >= 100 && this.frog.y < 160) {
+        } else if (this.frog.y >= 109.5 && this.frog.y <= 145) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW2.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x -= VEL_WATER_R2;
           }
-        } else if (this.frog.y >= 160 && this.frog.y < 215) {
+        } else if (this.frog.y >= 169.5 && this.frog.y <= 199) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW3.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x += VEL_WATER_R3;
           }
-        } else if (this.frog.y >= 215 && this.frog.y < 270) {
+        } else if (this.frog.y >= 229.5 && this.frog.y <= 266) {
           if (
-            this.obstacles.some((obstacle) =>
+            this.obstaclesW4.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
             this.frog.x -= VEL_WATER_R4;
           }
-        } else {
-          //this.gameOver()
         }
+      } else {
+        this.gameOver();
       }
     }
   }

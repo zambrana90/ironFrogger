@@ -49,8 +49,8 @@ class Turtle {
         this.turtleSprite.frameHeight,
         this.x,
         this.y,
-        this.width * 0.8,
-        this.height * 0.8
+        this.width * 0.9,
+        this.height * 0.9
       );
       this.turtleSprite.drawCount++;
       this.animateTurtleSprite();

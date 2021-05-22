@@ -1,16 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frogger</title>
-    <link rel="stylesheet" href="./assets/css/index.css">
-</head>
-<body>
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Frogger</title>
+      <link rel="stylesheet" href="./assets/css/index.css">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="game-intro">
+      <img src="./assets/img/logo.png" alt="" class="logo-img" />
+      <br />
+      <button id="start-button">StartGame</button>
+      <p>Use the arrows to move the frog!</p>
+      <img src="./assets/img/arrows.png" alt="" class="arrows-img" />
+    </div>
     <div id="game">
       <canvas id="game-canvas"></canvas>
     </div>
+    <div id="score-game" class="hide">
+      <div id="score">
+        <div>
+          <img src="./assets/img/logo.png" alt="" class="score-logo" />
+        </div>
+        <div class="score-lives">
+          <h3>LIVES:</h3>
+          <img src="./assets/img/heart.png" alt="" class="score-heart" />
+          <img src="./assets/img/heart.png" alt="" class="score-heart" />
+          <img src="./assets/img/heart.png" alt="" class="score-heart" />
+        </div>
+        <div class="score-lives">
+          <h3>POINTS:</h3>
+          <span id="dec" class="number">0</span><span id="uni" class="number">0</span>
+        </div>
+        <div class="score-lives">
+          <h3>TIME:</h3>
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+          <img src="./assets/img/time.png" alt="" class="score-time" />
+        </div>
+      </div>
+  </div>
     <script src="./assets/js/constants.js"></script>
     <script src="./assets/js/models/map.js"></script>
     <script src="./assets/js/models/treeM.js"></script>
@@ -34,4 +78,4 @@
     <script src="./assets/js/models/game.js"></script>
     <script src="./assets/js/index.js"></script>
   </body>
-  </html>
+</html>

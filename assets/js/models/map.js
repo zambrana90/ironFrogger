@@ -19,13 +19,13 @@ class Map {
       this.grass.isReady = true;
     };
     this.finalGrass = new Image();
-    this.finalGrass.src = "./assets/img/final-grass2.png";
+    this.finalGrass.src = "./assets/img/final-grass.png";
     this.finalGrass.isReady = false;
     this.finalGrass.onload = () => {
       this.finalGrass.isReady = true;
     };
     this.finalFrog = new Image();
-    this.finalFrog.src = "./assets/img/final-frog2.png";
+    this.finalFrog.src = "./assets/img/final-frog.png";
     this.finalFrog.isReady = false;
     this.finalFrog.onload = () => {
       this.finalFrog.isReady = true;
@@ -60,56 +60,84 @@ class Map {
       );
       this.ctx.drawImage(
         this.finalGrass,
-        this.x-2 + this.width,
-        this.y,
-        this.width,
-        this.height
-      );
-      this.ctx.drawImage(
-        this.finalFrog,
-        this.x-4 + this.width * 2,
+        this.x - 2 + this.width,
         this.y,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.finalGrass,
-        this.x-4 + this.width * 3,
+        this.x + 2 + this.width,
         this.y,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.finalFrog,
-        this.x-8 + this.width * 4,
+        this.x + this.width * 2,
         this.y,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.finalGrass,
-        this.x-4 + this.width * 5,
-        this.y,
-        this.width,
-        this.height
-      );
-      this.ctx.drawImage(
-        this.finalFrog,
-        this.x-8 + this.width * 6,
+        this.x - 2 + this.width * 3,
         this.y,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.finalGrass,
-        this.x-4 + this.width * 7,
+        this.x + 2 + this.width * 3,
         this.y,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.finalFrog,
-        this.x-8 + this.width * 8,
+        this.x + this.width * 4,
+        this.y,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.finalGrass,
+        this.x - 2 + this.width * 5,
+        this.y,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.finalGrass,
+        this.x + 2 + this.width * 5,
+        this.y,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.finalFrog,
+        this.x + this.width * 6,
+        this.y,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.finalGrass,
+        this.x - 2 + this.width * 7,
+        this.y,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.finalGrass,
+        this.x + 2 + this.width * 7,
+        this.y,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.finalFrog,
+        this.x + this.width * 8,
         this.y,
         this.width,
         this.height
@@ -118,70 +146,70 @@ class Map {
       this.ctx.drawImage(
         this.water,
         this.x,
-        this.y + this.height,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2),
-        this.y + this.height,
+        this.x + (this.width - 4),
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 2,
-        this.y + this.height,
+        this.x + (this.width - 4) * 2,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 3,
-        this.y + this.height,
+        this.x + (this.width - 4) * 3,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 4,
-        this.y + this.height,
+        this.x + (this.width - 4) * 4,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 5,
-        this.y + this.height,
+        this.x + (this.width - 4) * 5,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 6,
-        this.y + this.height,
+        this.x + (this.width - 4) * 6,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 7,
-        this.y + this.height,
+        this.x + (this.width - 4) * 7,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 8,
-        this.y + this.height,
+        this.x + (this.width - 4) * 8,
+        this.y + this.height-2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 9,
-        this.y + this.height,
+        this.x + (this.width - 4) * 9,
+        this.y + this.height-2,
         this.width,
         this.height
       );
@@ -189,70 +217,70 @@ class Map {
       this.ctx.drawImage(
         this.water,
         this.x,
-        this.y + this.height * 2,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2),
-        this.y + this.height * 2,
+        this.x + (this.width - 4),
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 2,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 2,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 3,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 3,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 4,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 4,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 5,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 5,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 6,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 6,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 7,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 7,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 8,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 8,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 9,
-        this.y + this.height * 2,
+        this.x + (this.width - 4) * 9,
+        this.y + (this.height * 2)-4,
         this.width,
         this.height
       );
@@ -260,212 +288,212 @@ class Map {
       this.ctx.drawImage(
         this.water,
         this.x,
-        this.y + this.height * 3,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2),
-        this.y + this.height * 3,
+        this.x + (this.width - 4),
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 2,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 2,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 3,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 3,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 4,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 4,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 5,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 5,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 6,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 6,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 7,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 7,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 8,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 8,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.water,
-        this.x + (this.width - 2) * 9,
-        this.y + this.height * 3,
+        this.x + (this.width - 4) * 9,
+        this.y + (this.height * 3)-6,
         this.width,
         this.height
       );
       //ROW 5
       this.ctx.drawImage(
-        this.grass,
+        this.water,
         this.x,
-        this.y + this.height * 4,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2),
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4),
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 2,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 2,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 3,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 3,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 4,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 4,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 5,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 5,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 6,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 6,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 7,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 7,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 8,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 8,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.grass,
-        this.x + (this.width - 2) * 9,
-        this.y + this.height * 4,
+        this.water,
+        this.x + (this.width - 4) * 9,
+        this.y + (this.height * 3),
         this.width,
         this.height
       );
       //ROW 6
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2),
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 2,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 3,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 4,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 5,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 6,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 7,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 8,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
       this.ctx.drawImage(
-        this.road,
+        this.grass,
         this.x + (this.width - 2) * 9,
-        this.y + this.height * 5,
+        this.y + this.height * 4,
         this.width,
         this.height
       );
@@ -473,70 +501,70 @@ class Map {
       this.ctx.drawImage(
         this.road,
         this.x,
-        this.y + this.height * 6,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2),
-        this.y + this.height * 6,
+        this.x + (this.width - 4),
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 2,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 2,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 3,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 3,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 4,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 4,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 5,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 5,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 6,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 6,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 7,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 7,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 8,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 8,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 9,
-        this.y + this.height * 6,
+        this.x + (this.width - 4) * 9,
+        this.y + this.height * 5,
         this.width,
         this.height
       );
@@ -544,70 +572,70 @@ class Map {
       this.ctx.drawImage(
         this.road,
         this.x,
-        this.y + this.height * 7,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2),
-        this.y + this.height * 7,
+        this.x + (this.width - 4),
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 2,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 2,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 3,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 3,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 4,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 4,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 5,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 5,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 6,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 6,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 7,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 7,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 8,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 8,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 9,
-        this.y + this.height * 7,
+        this.x + (this.width - 4) * 9,
+        this.y + this.height * 6 - 2,
         this.width,
         this.height
       );
@@ -615,70 +643,141 @@ class Map {
       this.ctx.drawImage(
         this.road,
         this.x,
-        this.y + this.height * 8,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2),
-        this.y + this.height * 8,
+        this.x + (this.width - 4),
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 2,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 2,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 3,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 3,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 4,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 4,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 5,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 5,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 6,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 6,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 7,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 7,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 8,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 8,
+        this.y + this.height * 7 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.road,
-        this.x + (this.width - 2) * 9,
-        this.y + this.height * 8,
+        this.x + (this.width - 4) * 9,
+        this.y + this.height * 7 - 3,
+        this.width,
+        this.height
+      );
+      //ROW 10
+      this.ctx.drawImage(
+        this.road,
+        this.x,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4),
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 2,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 3,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 4,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 5,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 6,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 7,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 8,
+        this.y + this.height * 8 - 4,
+        this.width,
+        this.height
+      );
+      this.ctx.drawImage(
+        this.road,
+        this.x + (this.width - 4) * 9,
+        this.y + this.height * 8 - 4,
         this.width,
         this.height
       );
@@ -686,70 +785,70 @@ class Map {
       this.ctx.drawImage(
         this.grass,
         this.x,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2),
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 2,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 3,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 4,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 5,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 6,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 7,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 8,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );
       this.ctx.drawImage(
         this.grass,
         this.x + (this.width - 2) * 9,
-        this.y + this.height * 9,
+        this.y + this.height * 9 - 3,
         this.width,
         this.height
       );

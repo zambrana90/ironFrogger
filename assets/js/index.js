@@ -1,14 +1,23 @@
 window.addEventListener("load", () => {
-  const game = new Game("game-canvas");
+  document.getElementById("start-button").onclick = () => {
+    startGame();
+  };
+  function startGame() {
+    const game = new Game("game-canvas");
+    game.start();
 
-  //document.addEventListener("keypress", () => {
-  game.start();
+    document.addEventListener("keydown", () => {
+      game.onKeyEvent(event);
+    });
 
-  document.addEventListener("keydown", () => {
-    game.onKeyEvent(event);
-  });
+    document.addEventListener("keyup", () => {
+      game.onKeyEvent(event);
+    });
 
-  document.addEventListener("keyup", () => {
-    game.onKeyEvent(event);
-  });
+    const start = document.querySelector(".game-intro");
+    start.classList.add("hide")
+
+    const score = document.getElementById("score-game");
+    score.classList.remove("hide")
+  }
 });

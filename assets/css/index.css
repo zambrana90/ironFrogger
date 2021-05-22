@@ -1,0 +1,95 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    padding: 0;
+    text-align: center;
+    background-image: url('../img/background-color.png');
+  }
+  
+  .game-intro {
+    display: block;
+
+    padding: 8% 10% 0%;
+  }
+  
+  .game-intro p {
+    font-size: 18px;
+    font-family: "Verdana"
+  }
+  
+  .logo-img {
+    width: 350px;
+  }
+  
+  .arrows-img {
+    width: 150px;
+  }
+  
+  body button {
+    font-size: 30px;
+    background-color: #870007;
+    color: #fff;
+    padding: 20px 40px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  #game {
+      float: left;
+      padding: 20px 0px 0px 20px;
+  }
+
+  
+
+#score {
+    float: right;
+    width: 696px;
+    height: 798px;
+    margin: 20px 20px 0px 0px;
+    background-image: url('../img/background-score.png');
+}
+.score-logo {
+    width: 125px;
+    padding-top: 10%;
+}
+
+.score-heart {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin: auto 2%;    
+}
+.score-time {
+    width: 10px;
+    height: 30px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: auto 1%;    
+}
+.score-lives {
+    display: flex;
+    flex-direction: row;
+    padding: 5% 5% 5% 15%;
+}
+.score-lives h3{
+    padding: 0px 3%;
+    font-size: 24px;
+    font-weight: bolder;
+}
+.score-lives span{
+    margin: auto 2px;
+    font-size: 28px;
+    font-weight: bolder;
+}
+  .hide {
+      display: none;
+  }
+
+  #start-button {
+      margin: 20px 0px;
+  }
+  

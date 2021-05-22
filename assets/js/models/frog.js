@@ -228,6 +228,10 @@ class Frog {
         this.movements.down = status;
         break;
 
+      case KEY_A:
+        console.log(this.x);
+        console.log(this.y);
+
       default:
         break;
     }
@@ -236,15 +240,10 @@ class Frog {
   move() {
     if (this.movements.up) {
       if (
-        this.x > 79 &&
-        this.x < 158 &&
-        this.x > 237 &&
-        this.x < 316 &&
-        this.x > 395 &&
-        this.x < 474 &&
-        this.x > 553 &&
-        this.x < 632 &&
-        this.y < 80
+        (this.x > 16 && this.x < 159 && this.y < 55) ||
+        (this.x > 177 && this.x < 318 && this.y < 55) ||
+        (this.x > 331 && this.x < 474 && this.y < 55) ||
+        (this.x > 495 && this.x < 633 && this.y < 55)
       ) {
         this.vy = 0;
         this.vision.up = true;
@@ -259,23 +258,7 @@ class Frog {
         this.vision.right = false;
       }
     } else if (this.movements.down) {
-      if (
-        this.x > 79 &&
-        this.x < 158 &&
-        this.x > 237 &&
-        this.x < 316 &&
-        this.x > 395 &&
-        this.x < 474 &&
-        this.x > 553 &&
-        this.x < 632 &&
-        this.y < 80
-      ) {
-        this.vy = 0;
-        this.vision.up = false;
-        this.vision.left = false;
-        this.vision.down = true;
-        this.vision.right = false;
-      } else {
+      if (this.y < this.ctx.canvas.height - this.height) {
         this.vy = this.speed;
         this.vision.up = false;
         this.vision.left = false;
@@ -288,15 +271,10 @@ class Frog {
 
     if (this.movements.left) {
       if (
-        this.x > 79 &&
-        this.x < 158 &&
-        this.x > 237 &&
-        this.x < 316 &&
-        this.x > 395 &&
-        this.x < 474 &&
-        this.x > 553 &&
-        this.x < 632 &&
-        this.y < 80
+        (this.x > 16 && this.x < 159 && this.y < 53) ||
+        (this.x > 177 && this.x < 318 && this.y < 53) ||
+        (this.x > 331 && this.x < 474 && this.y < 53) ||
+        (this.x > 495 && this.x < 633 && this.y < 53)
       ) {
         this.vx = 0;
         this.vision.up = false;
@@ -312,15 +290,10 @@ class Frog {
       }
     } else if (this.movements.right) {
       if (
-        (this.x > 79 && this.y < 80) ||
-        (this.x > 158 &&
-          this.x < 237 &&
-          this.x < 316 &&
-          this.x > 395 &&
-          this.x < 474 &&
-          this.x > 553 &&
-          this.x < 632 &&
-          this.y < 80)
+        ((this.x+this.width) > 16 && (this.x+this.width) < 159 && this.y < 53) ||
+        ((this.x+this.width) > 177 && (this.x+this.width) < 318 && this.y < 53) ||
+        ((this.x+this.width) > 331 && (this.x+this.width) < 474 && this.y < 53) ||
+        ((this.x+this.width) > 495 && (this.x+this.width) < 633 && this.y < 53)
       ) {
         this.vx = 0;
         this.vision.up = false;
@@ -455,10 +428,10 @@ class Frog {
   collidesWithObst(obstacle) {
     if (obstacle.isReady()) {
       return (
-        this.x < obstacle.x + obstacle.width &&
-        this.x + this.width > obstacle.x &&
+        this.x + 20 < obstacle.x + obstacle.width &&
+        this.x  > obstacle.x &&
         this.y < obstacle.y + obstacle.height &&
-        this.y + this.height > obstacle.y
+        this.y -20 + this.height > obstacle.y
       );
     }
   }
