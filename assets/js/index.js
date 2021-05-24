@@ -1,5 +1,6 @@
 window.addEventListener("load", () => {
   document.getElementById("start-button").onclick = () => {
+    goFullScreen();
     startGame();
   };
   function startGame() {
@@ -20,5 +21,16 @@ window.addEventListener("load", () => {
     const score = document.getElementById("score-game");
     score.classList.remove("inactive");
   }
-  
+  function goFullScreen() {
+    var elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    }
+  }
 });

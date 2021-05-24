@@ -7,13 +7,12 @@ body {
   
   .game-intro {
     display: block;
-
     padding: 8% 10% 0%;
   }
   
   .game-intro p {
-    font-size: 18px;
-    font-family: "Verdana"
+    font-size: 16px;
+    padding-bottom: 20px;
   }
   
   .logo-img {
@@ -94,6 +93,8 @@ body {
 
 
   #start-button {
-      margin: 20px 0px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: small;
+    margin: 20px 0px;
   }
   

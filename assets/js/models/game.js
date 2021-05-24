@@ -28,6 +28,8 @@ class Game {
 
     this.flys = [];
 
+    this.deaths = [];
+
     this.carYellow = new CarYellow(this.ctx, -250, 560, VEL_ROAD_R3);
     this.cars.push(this.carYellow);
     this.carYellowReverse = new CarYellowReverse(
@@ -153,6 +155,8 @@ class Game {
   draw() {
     this.map.draw();
 
+    this.deaths.forEach((death) => death.draw());
+
     this.turtle1.draw();
     this.turtle2.draw();
     this.turtle3.draw();
@@ -226,6 +230,7 @@ class Game {
   checkCollisions() {
     if (this.cars.some((car) => this.frog.collidesWith(car))) {
       this.livesCount--;
+      this.addDeath();
       this.restart();
     } else if (this.frog.vision.up && this.frog.y >= 53 && this.frog.y < 290) {
       if (
@@ -266,6 +271,7 @@ class Game {
         }
       } else {
         this.livesCount--;
+        this.addDeath();
         this.restart();
       }
     } else if (
@@ -311,6 +317,7 @@ class Game {
         }
       } else {
         this.livesCount--;
+        this.addDeath();
         this.restart();
       }
     } else if (
@@ -356,6 +363,7 @@ class Game {
         }
       } else {
         this.livesCount--;
+        this.addDeath();
         this.restart();
       }
     }
@@ -363,13 +371,14 @@ class Game {
 
   time() {
     if (this.timeCount % 180 == 0) {
-      let time = document.querySelectorAll(".score-time");
+      let time = document.querySelectorAll(".score-time.active");
+      console.log(time);
       const timeArr = [...time];
       let lastIndex = timeArr.length - 1;
       if (timeArr.length > 0) {
-        timeArr[lastIndex].classList.add("inactive");
-        timeArr[lastIndex].remove();
+        timeArr[lastIndex].classList.replace("active", "inactive");
       } else {
+        this.addDeath();
         this.gameOver();
       }
     }
@@ -452,6 +461,16 @@ class Game {
     setTimeout(function () {
       clearInterval(interval);
     }, 2000);
+
+    this.timeCount = 0;
+
+    let time = document.querySelectorAll(".score-time.inactive");
+    let timeArr = [...time];
+    timeArr.forEach((el) => el.classList.replace("inactive", "active"));
+
+    if (this.livesCount > 0) {
+      this.scoreCount = 0;
+    }
   }
 
   finish() {
@@ -507,5 +526,9 @@ class Game {
       );
       this.ctx.restore();
     }
+  }
+
+  addDeath() {
+    this.deaths.push(new Death(this.ctx, this.frog.x, this.frog.y));
   }
 }
