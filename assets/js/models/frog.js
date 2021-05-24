@@ -10,9 +10,6 @@ class Frog {
     this.vy = y;
     this.maxY = y;
 
-    this.width = 0;
-    this.height = 0;
-
     this.speed = FROG_SPEED;
 
     this.frogSpriteUp = new Image();
@@ -414,7 +411,7 @@ class Frog {
     }
   }
 
-  collidesWithCar(element) {
+  collidesWith(element) {
     if (element.isReady()) {
       return (
         this.x + 20 < element.x + element.width &&
@@ -435,4 +432,6 @@ class Frog {
       );
     }
   }
+
+  
 }

@@ -19,11 +19,14 @@ class Game {
     this.map = new Map(this.ctx);
 
     this.cars = [];
+
     this.obstacles = [];
     this.obstaclesW1 = [];
     this.obstaclesW2 = [];
     this.obstaclesW3 = [];
     this.obstaclesW4 = [];
+
+    this.flys = [];
 
     this.carYellow = new CarYellow(this.ctx, -250, 560, VEL_ROAD_R3);
     this.cars.push(this.carYellow);
@@ -87,11 +90,7 @@ class Game {
     this.obstacles.push(this.treeM2);
     this.obstaclesW1.push(this.treeM2);
 
-    this.frog = new Frog(
-      this.ctx,
-      this.ctx.canvas.width / 2,
-      this.ctx.canvas.height - 90
-    );
+    this.frog = new Frog(this.ctx, 335, 700);
   }
 
   start() {
@@ -102,11 +101,24 @@ class Game {
         this.draw();
 
         this.checkCollisions();
+
         this.timeCount++;
-        this.scoreCount++;
         this.time();
+
         this.lives();
+
         this.score();
+        if (this.scoreCount >= 0) {
+          let scoreUni = document.querySelector("#uni");
+          scoreUni.innerHTML = Math.floor(this.scoreCount / 20);
+        }
+        if (this.timeCount % 720 == 0) {
+          this.addFly();
+        }
+
+        this.checkCollisionsFlys();
+
+        this.finish();
       }, this.fps);
     }
   }
@@ -163,6 +175,8 @@ class Game {
     this.police1.draw();
     this.police2.draw();
     this.fireTruck.draw();
+
+    this.flys.forEach((fly) => fly.draw());
   }
 
   onKeyEvent(event) {
@@ -170,44 +184,59 @@ class Game {
   }
 
   gameOver() {
-    this.frog.x = this.ctx.canvas.width / 2;
-    this.frog.y = this.ctx.canvas.height - 90;
-    //console.log("MUERTO");
-    /*
-      clearInterval(this.drawInterval)
+    clearInterval(this.drawInterval);
 
-      this.ctx.save()
-      this.ctx.fillStyle = "rgba(0, 0, 0, 0.5)"
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+    this.ctx.save();
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
-      this.ctx.font = "28px Goblin One"
-      this.ctx.fillStyle = "#fff"
-      this.ctx.textAlign = "center"
-      this.ctx.fillText(
-        "Game Over",
-        this.canvas.width / 2,
-        this.canvas.height / 2,
-      )
-      this.ctx.restore()
-    }
-    */
+    this.ctx.font = "50px 'Press Start 2P', cursive";
+    this.ctx.fillStyle = "red";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(
+      "Game Over",
+      this.ctx.canvas.width / 2,
+      this.ctx.canvas.height / 2 - 90
+    );
+    this.ctx.restore();
+
+    this.ctx.save();
+    this.ctx.font = "40px 'Press Start 2P', cursive";
+    this.ctx.fillStyle = "#fff";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(
+      `Your final score`,
+      this.ctx.canvas.width / 2,
+      this.ctx.canvas.height / 2 - 25
+    );
+    this.ctx.restore();
+
+    this.ctx.save();
+    this.ctx.font = "40px 'Press Start 2P', cursive";
+    this.ctx.fillStyle = "#fff";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(
+      `${Math.floor(this.scoreCount / 20)}`,
+      this.ctx.canvas.width / 2,
+      this.ctx.canvas.height / 2 + 50
+    );
+    this.ctx.restore();
   }
 
   checkCollisions() {
-    if (this.cars.some((car) => this.frog.collidesWithCar(car))) {
+    if (this.cars.some((car) => this.frog.collidesWith(car))) {
       this.livesCount--;
-      this.gameOver();
-    } else if (this.frog.vision.up && this.frog.y >= 54 && this.frog.y < 290) {
+      this.restart();
+    } else if (this.frog.vision.up && this.frog.y >= 53 && this.frog.y < 290) {
       if (
         this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
       ) {
-        if (this.frog.y >= 54 && this.frog.y <= 90) {
+        if (this.frog.y >= 53 && this.frog.y <= 90) {
           if (
             this.obstaclesW1.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            //console.log("1ª");
             this.frog.x += VEL_WATER_R1;
           }
         } else if (this.frog.y >= 110 && this.frog.y <= 149) {
@@ -216,7 +245,6 @@ class Game {
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            //console.log("2ª");
             this.frog.x -= VEL_WATER_R2;
           }
         } else if (this.frog.y >= 174 && this.frog.y <= 211) {
@@ -225,7 +253,6 @@ class Game {
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            // console.log("3ª");
             this.frog.x += VEL_WATER_R3;
           }
         } else if (this.frog.y >= 235 && this.frog.y <= 282) {
@@ -234,13 +261,12 @@ class Game {
               this.frog.collidesWithObst(obstacle)
             )
           ) {
-            //console.log("4ª");
             this.frog.x -= VEL_WATER_R4;
           }
         }
       } else {
         this.livesCount--;
-        this.gameOver();
+        this.restart();
       }
     } else if (
       this.frog.vision.down &&
@@ -285,7 +311,7 @@ class Game {
         }
       } else {
         this.livesCount--;
-        this.gameOver();
+        this.restart();
       }
     } else if (
       (this.frog.vision.left || this.frog.vision.right) &&
@@ -330,32 +356,48 @@ class Game {
         }
       } else {
         this.livesCount--;
-        this.gameOver();
+        this.restart();
       }
     }
   }
 
   time() {
-    //console.log(this.timeCount);
-    if (this.timeCount % 120 == 0) {
+    if (this.timeCount % 180 == 0) {
       let time = document.querySelectorAll(".score-time");
       const timeArr = [...time];
-      console.log(timeArr);
       let lastIndex = timeArr.length - 1;
-      timeArr[lastIndex].classList.add("inactive");
-      timeArr[lastIndex].remove();
+      if (timeArr.length > 0) {
+        timeArr[lastIndex].classList.add("inactive");
+        timeArr[lastIndex].remove();
+      } else {
+        this.gameOver();
+      }
     }
   }
 
   score() {
-    if (this.scoreCount % 30 == 0) {
-      let scoreUni = document.querySelector("#uni");
-      scoreUni.innerHTML = Math.floor(this.scoreCount / 20);
+    if (this.frog.vision.up) {
+      if (this.frog.y <= 697 && this.frog.y >= 356) {
+        return (this.scoreCount += 3);
+      } else if (this.frog.y <= 264.5 && this.frog.y >= 53.5) {
+        return (this.scoreCount += 2);
+      }
+    } else if (this.frog.vision.down) {
+      if (this.frog.y <= 685.5 && this.frog.y >= 370.5) {
+        return (this.scoreCount += 3);
+      } else if (this.frog.y <= 255 && this.frog.y >= 19.5) {
+        return (this.scoreCount += 2);
+      }
+    } else if (this.frog.vision.left || this.frog.vision.right) {
+      if (this.frog.y <= 690 && this.frog.y >= 379.5) {
+        return (this.scoreCount += 3);
+      } else if (this.frog.y <= 252 && this.frog.y >= 54) {
+        return (this.scoreCount += 2);
+      }
     }
   }
 
   lives() {
-    //console.log(this.timeCount);
     if (this.livesCount == 3) {
     } else if (this.livesCount == 2) {
       let live = document.querySelectorAll(".score-heart");
@@ -367,8 +409,103 @@ class Game {
       const liveArr = [...live];
       liveArr[1].classList.add("inactive");
       liveArr[1].classList.remove();
-    } else {
+    } else if (this.livesCount == 0) {
+      let live = document.querySelectorAll(".score-heart");
+      const liveArr = [...live];
+      liveArr[0].classList.add("inactive");
+      liveArr[0].classList.remove();
       this.gameOver();
+    }
+  }
+
+  addFly() {
+    let posX = Math.floor(Math.random() * (this.ctx.canvas.width - 50));
+
+    let posY = Math.floor(Math.random() * (this.ctx.canvas.height - 50));
+    if (posY >= 370) {
+      posY = 370;
+    } else if (posY <= 10) {
+      posY = 10;
+    }
+
+    this.flys.push(new Fly(this.ctx, posX, posY));
+  }
+
+  checkCollisionsFlys() {
+    const restFlys = this.flys.filter((fly) => !this.frog.collidesWith(fly));
+
+    const newPoints = this.flys.length - restFlys.length;
+    this.flys = restFlys;
+
+    this.scoreCount += newPoints * 1000;
+  }
+
+  restart() {
+    this.frog.x = 335;
+    this.frog.y = 700;
+    let interval = null;
+    interval = setInterval(() => {
+      this.frog.x = 335;
+      this.frog.y = 700;
+    }, this.fps);
+
+    setTimeout(function () {
+      clearInterval(interval);
+    }, 2000);
+  }
+
+  finish() {
+    if (
+      (this.frog.vision.up && this.frog.y <= 13) ||
+      (this.frog.vision.down && this.frog.y <= 6) ||
+      ((this.frog.vision.left || this.frog.vision.right) && this.frog.y <= 10.5)
+    ) {
+      clearInterval(this.drawInterval);
+
+      this.ctx.save();
+      this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+      this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+      this.ctx.font = "50px 'Press Start 2P', cursive";
+      this.ctx.fillStyle = "red";
+      this.ctx.textAlign = "center";
+      this.ctx.fillText(
+        "Winner",
+        this.ctx.canvas.width / 2,
+        this.ctx.canvas.height / 2 - 90
+      );
+      this.ctx.restore();
+
+      this.ctx.save();
+      this.ctx.font = "40px 'Press Start 2P', cursive";
+      this.ctx.fillStyle = "#fff";
+      this.ctx.textAlign = "center";
+      this.ctx.fillText(
+        `Your final score`,
+        this.ctx.canvas.width / 2,
+        this.ctx.canvas.height / 2 - 25
+      );
+
+      let scoreUni = document.querySelector("#uni");
+      scoreUni.innerHTML =
+        Math.floor(this.scoreCount / 20) +
+        Math.floor((2700 - this.timeCount) / 20);
+
+      this.ctx.restore();
+
+      this.ctx.save();
+      this.ctx.font = "40px 'Press Start 2P', cursive";
+      this.ctx.fillStyle = "#fff";
+      this.ctx.textAlign = "center";
+      this.ctx.fillText(
+        `${
+          Math.floor(this.scoreCount / 20) +
+          Math.floor((2700 - this.timeCount) / 20)
+        }`,
+        this.ctx.canvas.width / 2,
+        this.ctx.canvas.height / 2 + 50
+      );
+      this.ctx.restore();
     }
   }
 }
