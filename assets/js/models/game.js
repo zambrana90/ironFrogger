@@ -18,6 +18,19 @@ class Game {
 
     this.map = new Map(this.ctx);
 
+    const theme = new Audio("./assets/sound/fr-theme.mp3");
+    theme.volume = 0.2;
+
+    this.sounds = {
+      theme,
+      water: new Audio("./assets/sound/fr-water.mp3"),
+      road: new Audio("./assets/sound/fr-road.wav"),
+      time: new Audio("./assets/sound/fr-time.wav"),
+      fly: new Audio("./assets/sound/fr-fly.mp3"),
+      gameOver: new Audio("./assets/sound/fr-gameOver.mp3"),
+      winner: new Audio("./assets/sound/fr-winner.mp3"),
+    };
+
     this.cars = [];
 
     this.obstacles = [];
@@ -98,6 +111,9 @@ class Game {
   start() {
     if (!this.drawInterval) {
       this.drawInterval = setInterval(() => {
+        if (!this.sounds.theme.play()) {
+          this.sounds.theme.play();
+        }
         this.clear();
         this.move();
         this.draw();
@@ -188,7 +204,10 @@ class Game {
   }
 
   gameOver() {
+    console.log(this.frog.x);
+    console.log(this.frog.y);
     clearInterval(this.drawInterval);
+    this.sounds.gameOver.play();
 
     this.ctx.save();
     this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
@@ -230,9 +249,10 @@ class Game {
   checkCollisions() {
     if (this.cars.some((car) => this.frog.collidesWith(car))) {
       this.livesCount--;
+      this.sounds.road.play();
       this.addDeath();
       this.restart();
-    } else if (this.frog.vision.up && this.frog.y >= 53 && this.frog.y < 290) {
+    } else if (this.frog.vision.up && this.frog.y >= 53 && this.frog.y <= 286) {
       if (
         this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
       ) {
@@ -260,7 +280,7 @@ class Game {
           ) {
             this.frog.x += VEL_WATER_R3;
           }
-        } else if (this.frog.y >= 235 && this.frog.y <= 282) {
+        } else if (this.frog.y >= 235 && this.frog.y <= 286) {
           if (
             this.obstaclesW4.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
@@ -271,6 +291,7 @@ class Game {
         }
       } else {
         this.livesCount--;
+        this.sounds.water.play();
         this.addDeath();
         this.restart();
       }
@@ -317,6 +338,7 @@ class Game {
         }
       } else {
         this.livesCount--;
+        this.sounds.water.play();
         this.addDeath();
         this.restart();
       }
@@ -328,7 +350,7 @@ class Game {
       if (
         this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
       ) {
-        if (this.frog.y >= 54 && this.frog.y <= 74.5) {
+        if (this.frog.y >= 54 && this.frog.y <= 83.5) {
           if (
             this.obstaclesW1.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
@@ -363,6 +385,7 @@ class Game {
         }
       } else {
         this.livesCount--;
+        this.sounds.water.play();
         this.addDeath();
         this.restart();
       }
@@ -372,7 +395,6 @@ class Game {
   time() {
     if (this.timeCount % 180 == 0) {
       let time = document.querySelectorAll(".score-time.active");
-      console.log(time);
       const timeArr = [...time];
       let lastIndex = timeArr.length - 1;
       if (timeArr.length > 0) {
@@ -380,6 +402,11 @@ class Game {
       } else {
         this.addDeath();
         this.gameOver();
+      }
+    }
+    if (this.timeCount >= 2430) {
+      if (!this.sounds.time.play()) {
+        this.sounds.time.play();
       }
     }
   }
@@ -424,6 +451,7 @@ class Game {
       liveArr[0].classList.add("inactive");
       liveArr[0].classList.remove();
       this.gameOver();
+      this.sounds.theme.stop();
     }
   }
 
@@ -433,8 +461,8 @@ class Game {
     let posY = Math.floor(Math.random() * (this.ctx.canvas.height - 50));
     if (posY >= 370) {
       posY = 370;
-    } else if (posY <= 10) {
-      posY = 10;
+    } else if (posY <= 55) {
+      posY = 55;
     }
 
     this.flys.push(new Fly(this.ctx, posX, posY));
@@ -445,17 +473,27 @@ class Game {
 
     const newPoints = this.flys.length - restFlys.length;
     this.flys = restFlys;
+    if (newPoints) {
+      this.sounds.fly.currentTime = 0;
+      this.sounds.fly.play();
+    }
 
-    this.scoreCount += newPoints * 1000;
+    this.scoreCount += newPoints * 1500;
   }
 
   restart() {
+    console.log(this.frog.x);
+    console.log(this.frog.y);
     this.frog.x = 335;
     this.frog.y = 700;
     let interval = null;
     interval = setInterval(() => {
       this.frog.x = 335;
       this.frog.y = 700;
+      this.frog.movements.up = false;
+      this.frog.movements.right = false;
+      this.frog.movements.left = false;
+      this.frog.movements.down = false;
     }, this.fps);
 
     setTimeout(function () {
@@ -480,6 +518,7 @@ class Game {
       ((this.frog.vision.left || this.frog.vision.right) && this.frog.y <= 10.5)
     ) {
       clearInterval(this.drawInterval);
+      this.sounds.winner.play();
 
       this.ctx.save();
       this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
