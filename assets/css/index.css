@@ -105,4 +105,17 @@ body {
     top: 55vh;
     left: 18vw;
   }
-  
+
+  @media (max-width: 1281px) {
+    .score-board {
+      padding: 5% 0% 5% 18%;
+  }
+    #game {
+      padding: 20px 0px 0px 0px;
+  }
+    #score {      
+      float: left;
+      margin: 20px 0px 0px 0px;
+      width: 530px;
+  }
+  }
