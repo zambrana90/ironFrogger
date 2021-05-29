@@ -70,17 +70,17 @@ body {
     justify-content: center;
     margin: auto 1%;    
 }
-.score-lives {
+.score-board {
     display: flex;
     flex-direction: row;
     padding: 5% 5% 5% 15%;
 }
-.score-lives h3{
+.score-board h3{
     padding: 0px 3%;
     font-size: 24px;
     font-weight: bolder;
 }
-.score-lives span{
+.score-board span{
     margin: auto 2px;
     font-size: 28px;
     font-weight: bolder;
@@ -91,11 +91,18 @@ body {
   .inactive {
     display: none;
 }
-
-
   #start-button {
     font-family: 'Press Start 2P', cursive;
     font-size: small;
     margin: 20px 0px;
+  }
+
+  #play-again {
+    font-family: 'Press Start 2P', cursive;
+    font-size: small;
+    margin: 20px 0px;
+    position: absolute;
+    top: 55vh;
+    left: 18vw;
   }
   

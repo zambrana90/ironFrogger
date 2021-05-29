@@ -15,6 +15,13 @@ window.addEventListener("load", () => {
       game.onKeyEvent(event);
     });
 
+    document.getElementById("play-again").onclick = () => {
+      game.restartGame();
+      startGame();
+    };
+    const playAgain = document.getElementById("play-again");
+    playAgain.classList.replace("active", "inactive");
+
     const start = document.querySelector(".game-intro");
     start.classList.add("inactive");
 

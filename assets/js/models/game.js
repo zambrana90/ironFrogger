@@ -219,31 +219,12 @@ class Game {
     this.ctx.fillText(
       "Game Over",
       this.ctx.canvas.width / 2,
-      this.ctx.canvas.height / 2 - 90
-    );
-    this.ctx.restore();
-
-    this.ctx.save();
-    this.ctx.font = "40px 'Press Start 2P', cursive";
-    this.ctx.fillStyle = "#fff";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(
-      `Your final score`,
-      this.ctx.canvas.width / 2,
-      this.ctx.canvas.height / 2 - 25
-    );
-    this.ctx.restore();
-
-    this.ctx.save();
-    this.ctx.font = "40px 'Press Start 2P', cursive";
-    this.ctx.fillStyle = "#fff";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(
-      `${Math.floor(this.scoreCount / 20)}`,
-      this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2 + 50
     );
     this.ctx.restore();
+
+    let playAgain = document.getElementById("play-again");
+    playAgain.classList.replace("inactive", "active");
   }
 
   checkCollisions() {
@@ -252,7 +233,7 @@ class Game {
       this.sounds.road.play();
       this.addDeath();
       this.restart();
-    } else if (this.frog.vision.up && this.frog.y >= 53 && this.frog.y <= 286) {
+    } else if (this.frog.vision.up && this.frog.y >= 53 && this.frog.y <= 285) {
       if (
         this.obstacles.some((obstacle) => this.frog.collidesWithObst(obstacle))
       ) {
@@ -280,7 +261,7 @@ class Game {
           ) {
             this.frog.x += VEL_WATER_R3;
           }
-        } else if (this.frog.y >= 235 && this.frog.y <= 286) {
+        } else if (this.frog.y >= 235 && this.frog.y <= 285) {
           if (
             this.obstaclesW4.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
@@ -400,8 +381,9 @@ class Game {
       if (timeArr.length > 0) {
         timeArr[lastIndex].classList.replace("active", "inactive");
       } else {
+        this.livesCount--;
         this.addDeath();
-        this.gameOver();
+        this.restart();
       }
     }
     if (this.timeCount >= 2430) {
@@ -451,7 +433,7 @@ class Game {
       liveArr[0].classList.add("inactive");
       liveArr[0].classList.remove();
       this.gameOver();
-      this.sounds.theme.stop();
+      //this.sounds.theme.stop();
     }
   }
 
@@ -500,14 +482,12 @@ class Game {
       clearInterval(interval);
     }, 2000);
 
-    this.timeCount = 0;
-
-    let time = document.querySelectorAll(".score-time.inactive");
-    let timeArr = [...time];
-    timeArr.forEach((el) => el.classList.replace("inactive", "active"));
-
     if (this.livesCount > 0) {
+      this.timeCount = 0;
       this.scoreCount = 0;
+      let time = document.querySelectorAll(".score-time.inactive");
+      let timeArr = [...time];
+      timeArr.forEach((el) => el.classList.replace("inactive", "active"));
     }
   }
 
@@ -564,10 +544,23 @@ class Game {
         this.ctx.canvas.height / 2 + 50
       );
       this.ctx.restore();
+
+      let playAgain = document.getElementById("play-again");
+      playAgain.classList.replace("inactive", "active");
     }
   }
 
   addDeath() {
     this.deaths.push(new Death(this.ctx, this.frog.x, this.frog.y));
+  }
+
+  restartGame() {
+    let time = document.querySelectorAll(".score-time.inactive");
+    let timeArr = [...time];
+    timeArr.forEach((el) => el.classList.replace("inactive", "active"));
+
+    let live = document.querySelectorAll(".score-heart");
+    const liveArr = [...live];
+    liveArr.forEach((live) => live.classList.remove("inactive"));
   }
 }
