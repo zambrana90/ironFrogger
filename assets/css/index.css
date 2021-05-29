@@ -105,30 +105,3 @@ body {
     top: 55vh;
     left: 18vw;
   }
-
-  @media (min-width: 1257) and (max-width: 1280){
-    .score-board {
-      padding: 5% 0% 5% 18%;
-  }
-    #game {
-      padding: 20px 0px 0px 0px;
-  }
-    #score {      
-      float: left;
-      margin: 20px 0px 0px 0px;
-      width: 530px;
-  }
-}
-  @media (min-width: 1281) and (max-width: 1361){
-    .score-board {
-      padding: 5% 0% 5% 18%;
-  }
-    #game {
-      padding: 20px 0px 0px 0px;
-  }
-    #score {      
-      float: left;
-      margin: 20px 0px 0px 0px;
-      width: 610px;
-  }
-  }
