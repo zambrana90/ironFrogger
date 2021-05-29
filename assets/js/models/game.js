@@ -478,6 +478,8 @@ class Game {
       this.frog.movements.down = false;
     }, this.fps);
 
+    this.flys.splice(0,this.flys.length)
+
     setTimeout(function () {
       clearInterval(interval);
     }, 2000);
