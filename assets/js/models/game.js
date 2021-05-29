@@ -207,6 +207,7 @@ class Game {
     console.log(this.frog.x);
     console.log(this.frog.y);
     clearInterval(this.drawInterval);
+    this.sounds.theme.pause();
     this.sounds.gameOver.play();
 
     this.ctx.save();
