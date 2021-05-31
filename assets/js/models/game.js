@@ -204,7 +204,6 @@ class Game {
   }
 
   gameOver() {
-    console.log(this.frog.y)
     clearInterval(this.drawInterval);
     this.sounds.theme.pause();
     this.sounds.gameOver.play();
@@ -463,7 +462,6 @@ class Game {
   }
 
   restart() {
-    console.log(this.frog.y)
     this.frog.x = 335;
     this.frog.y = 700;
     let interval = null;
@@ -476,7 +474,7 @@ class Game {
       this.frog.movements.down = false;
     }, this.fps);
 
-    this.flys.splice(0,this.flys.length)
+    this.flys.splice(0, this.flys.length);
 
     setTimeout(function () {
       clearInterval(interval);
@@ -499,6 +497,7 @@ class Game {
     ) {
       clearInterval(this.drawInterval);
       this.sounds.winner.play();
+      this.sounds.theme.pause();
 
       this.ctx.save();
       this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
