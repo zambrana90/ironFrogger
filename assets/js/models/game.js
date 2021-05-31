@@ -204,6 +204,7 @@ class Game {
   }
 
   gameOver() {
+    console.log(this.frog.y)
     clearInterval(this.drawInterval);
     this.sounds.theme.pause();
     this.sounds.gameOver.play();
@@ -307,7 +308,7 @@ class Game {
           ) {
             this.frog.x += VEL_WATER_R3;
           }
-        } else if (this.frog.y >= 224 && this.frog.y <= 256.5) {
+        } else if (this.frog.y >= 224 && this.frog.y <= 279) {
           if (
             this.obstaclesW4.some((obstacle) =>
               this.frog.collidesWithObst(obstacle)
@@ -439,10 +440,10 @@ class Game {
     let posX = Math.floor(Math.random() * (this.ctx.canvas.width - 50));
 
     let posY = Math.floor(Math.random() * (this.ctx.canvas.height - 50));
-    if (posY >= 390) {
-      posY = 390;
-    } else if (posY <= 55) {
-      posY = 55;
+    if (posY >= 370) {
+      posY = 370;
+    } else if (posY <= 65) {
+      posY = 65;
     }
 
     this.flys.push(new Fly(this.ctx, posX, posY));
@@ -462,6 +463,7 @@ class Game {
   }
 
   restart() {
+    console.log(this.frog.y)
     this.frog.x = 335;
     this.frog.y = 700;
     let interval = null;
