@@ -204,8 +204,6 @@ class Game {
   }
 
   gameOver() {
-    console.log(this.frog.x);
-    console.log(this.frog.y);
     clearInterval(this.drawInterval);
     this.sounds.theme.pause();
     this.sounds.gameOver.play();
@@ -434,7 +432,6 @@ class Game {
       liveArr[0].classList.add("inactive");
       liveArr[0].classList.remove();
       this.gameOver();
-      //this.sounds.theme.stop();
     }
   }
 
@@ -442,8 +439,8 @@ class Game {
     let posX = Math.floor(Math.random() * (this.ctx.canvas.width - 50));
 
     let posY = Math.floor(Math.random() * (this.ctx.canvas.height - 50));
-    if (posY >= 370) {
-      posY = 370;
+    if (posY >= 390) {
+      posY = 390;
     } else if (posY <= 55) {
       posY = 55;
     }
@@ -465,8 +462,6 @@ class Game {
   }
 
   restart() {
-    console.log(this.frog.x);
-    console.log(this.frog.y);
     this.frog.x = 335;
     this.frog.y = 700;
     let interval = null;
